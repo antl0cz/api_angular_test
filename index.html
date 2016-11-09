@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="demo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./Skeleton-2.0.4/css/skeleton.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+        var demo = angular.module('demo', []);
+
+        demo.controller('Hello', function ($scope, $http) {
+            $http.get('http://rest-service.guides.spring.io/greeting')
+                    .then(function (res) {
+                        $scope.greeting = res.data;
+                    })
+        })
+    </script>
+    <title>Angular API Demo</title>
+</head>
+<body>
+<div class="container">
+    <div ng-controller="Hello">
+        <h1>The ID is {{greeting.id}}</h1>
+        <h2>The content is {{greeting.content}}</h2>
+    </div>
+</div>
+</body>
+</html>
